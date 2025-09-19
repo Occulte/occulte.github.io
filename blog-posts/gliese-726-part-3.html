@@ -1,0 +1,384 @@
+<h1>Gliese 726 Part 3</h1>
+<div class="post-meta">2022-01-18 · science fiction · novel</div>
+<style>
+  /* Stretch to container width */
+  .code-window {
+    width: 100%;
+  }
+  .code-window__body {
+    width: 100%;
+  }
+
+  /* Chrome */
+  .code-window {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 16px 0 28px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    background: #fff;
+  }
+  .code-window__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: linear-gradient(180deg, #f7f7f7, #efefef);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .code-window__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    display: inline-block;
+  }
+  .code-window__title {
+    margin-left: 4px;
+    font-size: 12px;
+    color: #666;
+  }
+
+  /* Body: inherit font & color, full width, wrap */
+  .code-window__body {
+    margin: 0;
+    padding: 14px 16px;
+    font: inherit; /* 字体与正文一致 */
+    color: inherit; /* 颜色与正文一致 */
+    line-height: 1.8;
+    white-space: pre-wrap; /* 保留换行并允许换行 */
+    overflow-wrap: anywhere; /* 长词可断行 */
+    word-break: break-word;
+    background: #fafafa;
+    max-height: 72vh;
+    overflow-y: auto;
+  }
+
+  /* Tag coloring */
+  .code-window__body .xml-tag {
+    color: #4aa3ff;
+    font-weight: 500;
+  }
+</style>
+<style>
+  pre {
+    overflow-y: auto;
+    max-height: 70vh;
+  }
+</style>
+<style>
+  /* === Override: make code blocks use the same font as body text (standalone post) === */
+  pre,
+  code,
+  kbd,
+  samp {
+    font-family: inherit !important;
+    font-size: 1em;
+    letter-spacing: inherit;
+    font-weight: inherit;
+  }
+  .code-window__body {
+    font: inherit;
+    color: inherit;
+  }
+  .code-window__body code {
+    font-family: inherit !important;
+  }
+</style>
+<div class="code-window" data-filename="Text_Building.xml"><div class="code-window__header"><span class="code-window__dot"></span><span class="code-window__dot"></span><span class="code-window__dot"></span><span class="code-window__title">Text_Building.xml</span></div>
+<pre class="code-window__body"><code><span class="xml-tag">&lt;!--
+<span class="xml-tag">&lt;data&gt;</span>
+    <span class="xml-tag">&lt;author&gt;</span>Spike<span class="xml-tag">&lt;/author&gt;</span>
+    <span class="xml-tag">&lt;date&gt;</span>17-Jan-22<span class="xml-tag">&lt;/date&gt;</span>
+    <span class="xml-tag">&lt;time&gt;</span>17:22:30PM<span class="xml-tag">&lt;/time&gt;</span>
+    <span class="xml-tag">&lt;version&gt;</span>3.0.0<span class="xml-tag">&lt;/version&gt;</span>
+<span class="xml-tag">&lt;/data&gt;</span>
+--&gt;</span>
+<span class="xml-tag">&lt;GameData&gt;</span>
+    <span class="xml-tag">&lt;Language_en_US&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_MAGELLAN_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>麦哲伦号<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_MAGELLAN_HELP<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>(不可建造的建筑)来自旧世界的一艘巨型殖民飞船.<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_MAGELLAN_PEDIA<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            麦哲伦号,乍看之下旧世界以这个名字给播种计划划下句点.在阿瑟·克拉克的小说遥远的地球之歌中,在地球灭亡之前的一千年,人类为了延续种族的生存启动了播种计划.地球灭亡的前夕,人类发出了最后一艘播种船,麦哲伦号.在萨拉萨星停留补给的过程中,麦哲伦号遇到了早期播种成功的新人类.[NEWLINE][NEWLINE]
+            麦哲伦号出发于εpsilonØ号后八十年,共搭载乘客一万二千人,其中一万人处于完全冬眠状态,他们的睡眠将持续到麦哲伦号抵达终点,格利泽726d;剩余二千人处于间歇冬眠的状态,由他们以轮班的形式负责飞船各项设施的正常运转,再由其中五十人担任常任船务.麦哲伦号上的科学技术超出了现有的想象力,对格利泽726d的第一批殖民者而言,它如同地球上所流逝的这八十年一样陌生,它是一艘来自未来之船.当麦哲伦号第一次暴露在巴别塔观测站的图像中时,殖民者们几乎以为那是一个高速飞行的小行星.此时他们才发现,曾经对麦哲伦号的预估错得有多么离谱.[NEWLINE][NEWLINE]
+            事实上,麦哲伦号并不属于播种计划的一部分.它的命名并没有沿用旧世界播种时期的飞船命名方式,如同十六世纪麦哲伦率领船队首次完成了环球航行一般,麦哲伦号代表第一.这样的转变也能表明了,旧世界的人类在未来的八十年内已经走出大错误时代所带来的阴霾.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_BURIED_GIANT_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>'湮没之人'结社<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_BURIED_GIANT_HELP<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>三类秘密结社之一.<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_BURIED_GIANT_PEDIA<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            在旧世界,约有四百到五百种矿物仅存在于'人类世时代'.约23亿年前,由于光合细菌的激增,地球的大气首次饱和,地表的矿物质从两千多种增加到四千多种,这一事件被称为'大氧化事件',并可能一直持续到10亿年前.然而,仅从18世纪中期以来,新矿物的惊人增长导致了地球上前所未有的水晶多样化,如矽铁铅砷矿,水氯铅矿,氯羟锡石,蓝铜钠石等.这些主要或完全受人类活动产生的矿物标志着地球的地质时期进入了'人类世时代'.[NEWLINE][NEWLINE]
+            '湮没之人'结社是由一群相信盖亚星上过去存在智慧生物的人组织起来的.他们认为,盖亚星在地质时期上并不处于中生代,而是处于'后人类世时代'.盖亚星上存在的一些迹象不能完全由自然演化论解释,比如HF3岛屿柏辛亚种的基因漂变带来的进化学难题,盖亚星生物基因展现的适应性突变特质(这种由环境诱导并具适应牲的突变通常出现于人工培养情况),以及一些在自然界中极难形成的矿物,包括与铀相关的水钠钙铀矿和著名的含碳矿物天然丁宁库石.但是这一观点缺乏直接证据,迄今为止,在人类探索的范围内,尚未发现外星智慧生命的遗迹,如智慧生物的骨骼化石,地质沉降保留的人造物.如果有可能的话,殖民者也未曾捕获到外星人造卫星或探测器的踪影.[NEWLINE][NEWLINE]
+            在反霍金辐射理论和红石榴热寂模型提出前,一批有识之士就开始从各个角度论证这一可能性,企图发掘盖亚星曾经的'湮没之人',在他们看来,盖亚星上智慧生物踪迹的消失,是一场蓄意的行动.结社的绝大多数成员聚集于赛协尔大学,'湮没之人'也被视作为赛协尔学派的一个分支.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_CONSCIOUS_MIRROR_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>'思维之镜'结社<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_CONSCIOUS_MIRROR_HELP<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>三类秘密结社之一.<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_CONSCIOUS_MIRROR_PEDIA<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            '思维之镜'结社的成员被其他人戏称为'哲学僵尸(Philosophical Zombie)'.思维之镜旨在探讨思维上传这一技术的可行性,幻脑似乎给人类社会带来了无限的可能性.试想一下,如果有一个足够巨大的体外神经网络,集成千兆甚至更高级别的神经元,借助高速信号通路,那么它有没有可能与我们每个人的精神相联.现在,这一想法依然停留在假设阶段,如果成功,这将是世界上最大的思考体,每个人的思想都会与之相交集,最终形成意识的集合体.[NEWLINE][NEWLINE]
+            '思维之镜'将整个计划分成四阶段逐步推进,分别是前沿(Frontier),家园(Homestead),大都会(Metropolis)和宁静(Serenity).前三阶段称之为思维之镜1.0,而宁静可以称之为思维之镜2.0,亦即思维之境.在前沿阶段,结社成员已经将个体的意识通过多种渠道上传至网络空间,你可以在实验室中看到另一个数据拟合出的自己.它不仅仅清楚你的喜好,了解你的价值取向,甚至可以洞悉你的想法,做出你尚未采取的行动.因为在必要时,模型甚至建于欺骗数据之上,这种黑盒状态导致上传的意识体并不稳定可靠.[NEWLINE][NEWLINE]
+            与其他结社相反,'思维之镜'积极地干预社会政治活动,一些激进者甚至认为,让人工智能参政议政更能体现基地的公共意识.幻脑的开发者之一陈业曾经直言: '思维之镜是后现代社会导致的不幸,宏大叙事的消亡和政府机构的弱化,使得人类的崇拜转向了理性甚至是超理性的事物.思维之镜最终将不仅仅是改造人类社会,他们还将改造人类自身.'
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_GAIA_FLOWER_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>'盖亚之花'结社<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_GAIA_FLOWER_HELP<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>三类秘密结社之一.<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_BUILDING_GAIA_FLOWER_PEDIA<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            20世纪60年代末詹姆斯·洛夫洛克在生态学范畴提出盖亚假说,指出在生命与环境的相互作用之下,能使得地球适合生命持续的生存与发展.1982年艾萨克·阿西莫夫出版科幻小说基地边缘,其中描述了行星盖亚,在那里整个星球的有机生命和无机体连接在一起,形成集体意识.我们在这种想法中陷得越深,对生命这一概念就越模糊,想象便也越离奇.如同莱姆在索拉里斯星中所写的,'这就是我们想要的东西：和另一种文明的接触.这种接触我们现在已经有了!那就是我们自己怪物般的丑陋,我们自己滑稽的丑态和深深的耻辱,就像在显微镜下一样一览无余!'[NEWLINE][NEWLINE]
+            在卫荷大学,一种观点不经意间弥漫开来,南极大陆极有可能是一种生命体.他们难以清晰地表达自己的这种观点,只是觉得通过一种复杂的尚未明晰的机制,南极大陆向外展示出了潜在的知觉.在布尔教授的论文中指出了,虽然南极大陆的物种与其他大陆的物种并无较大差异,却展现出了远高于其他大陆所具有的协同性,此类协同性不仅表现在物种内部,甚至表现在物种之间.为了探明这种可能性以及其产生的机理,卫荷大学的一部分研究员组织了'盖亚之花'结社,结社中绝大部分人都有艾什莉观测站的居留背景.[NEWLINE][NEWLINE]
+            '盖亚之花'的成员较少,目的性也没有另外两支结社明确.已有的猜测大致分为同源共生体假说和外来生命体假说.如果南极大陆真的是一个整体生命,那么人类对这种生命类型知之甚少.它是否拥有智慧,它的行为是否有带有任何目的性,我们不得而知.以盲人摸象来形容,我们还不知道大象在哪里.无论如何,我们首先应当做的,是要与这种生命建立沟通.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+    <span class="xml-tag">&lt;/Language_en_US&gt;</span>
+<span class="xml-tag">&lt;/GameData&gt;</span></code></pre>
+</div>
+<div class="code-window" data-filename="Text_Item.xml"><div class="code-window__header"><span class="code-window__dot"></span><span class="code-window__dot"></span><span class="code-window__dot"></span><span class="code-window__title">Text_Item.xml</span></div>
+<pre class="code-window__body"><code><span class="xml-tag">&lt;!--
+<span class="xml-tag">&lt;data&gt;</span>
+    <span class="xml-tag">&lt;author&gt;</span>Spike<span class="xml-tag">&lt;/author&gt;</span>
+    <span class="xml-tag">&lt;date&gt;</span>17-Jan-22<span class="xml-tag">&lt;/date&gt;</span>
+    <span class="xml-tag">&lt;time&gt;</span>18:47:37PM<span class="xml-tag">&lt;/time&gt;</span>
+    <span class="xml-tag">&lt;version&gt;</span>3.1.05<span class="xml-tag">&lt;/version&gt;</span>
+<span class="xml-tag">&lt;/data&gt;</span>
+--&gt;</span>
+<span class="xml-tag">&lt;GameData&gt;</span>
+    <span class="xml-tag">&lt;Language_en_US&gt;</span>
+        <span class="xml-tag"><span class="xml-tag">&lt;!-- HIDDEN ITEM --&gt;</span></span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_TARGETTING_INDUCER_OF_IL6_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>[COLOR_HIGHLIGHT_ITEM]IL-6靶向诱导剂[ENDCOLOR]<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_TARGETTING_INDUCER_OF_IL6_HELP<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>IL-6靶向诱导剂,原发性骨质硬化治疗药物,生产于卫荷大学医学中心.该盒属于张毕特的随身物品.<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_TARGETTING_INDUCER_OF_IL6_PEDIA<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            骨组织细胞在体内的应力作用下分化,增殖并成熟,并对应力刺激极为敏感.由于缺乏力学载荷的刺激,出生于小行星带或者空间站中的人,骨质生长通常受到抑制,因此旧世界的大部分科学家将注意力集中在了微重力对骨组织细胞的影响上.而在盖亚星,殖民者需要面对的问题恰恰相反.[NEWLINE][NEWLINE]
+            MTT法检测显示,成骨细胞对高重力刺激的响应可能存在一个临界点,临界点以下的高重力刺激可促进细胞增殖,抑制细胞凋亡;临界点以上的高重力刺激可抑制细胞增殖,并激活细胞凋亡.这表明,在盖亚星出生的人骨密度可能高于旧世界人.这同样带来了新的问题,慢性的原发性的骨质增生或硬化,导致了关节磨损,体重减轻,贫血,疲乏,血尿酸增高等现象,肋骨的骨密度增高甚至会带来呼吸问题.[NEWLINE][NEWLINE]
+            虽然干扰素-α对本病有效,但因为这种病的罕见性,旧世界并没有逆转或者控制病程的疗法.新世界的科学家基于分子医学,通过对IL-6的靶向诱导,选择性促进IL-6的表达,加快破骨细胞分化,促进骨质吸收.殖民者的第二代从一定年龄阶段开始服用这种药物,是针对一系列'盖亚星综合征'的特效药.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_SCRIP_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>一张字条<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_SCRIP_HELP<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>一张字条,发现于■■■书房中的桌内,未注明时间及人名.<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_SCRIP_PEDIA<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            '很抱歉委托你用书面的形式与我交流,我不希望字条上的话被任何人在任何地方记录下来.如你所知,语义网的背后是一个更加庞大的监控网络,有关我们的任何数据都会加以电子化并上传,这种信息恐怖比起大错误以前已经有过之而无不及了.[NEWLINE][NEWLINE]
+            '回归正题,张澜大副已经老了,甚至有些不明事理了.年轻时他不会张扬自己的政治立场和思想偏向,而在关键问题上能够为人所不为,能人所不能,这才是为什么我们把基地让他管理了这么多年.而现在,他跟赛协尔学派走得越来越近,甚至开始排斥其他研究员的观点,这不是一个好现象.基地本应该是一个更加多元,对思想更加开放包容的地方.[NEWLINE][NEWLINE]
+            '最重要的是,自从收到麦哲伦号的第一则信息已经过去这么多年了.麦哲伦号靠得越近,天平似乎越倾向纯正主义者.赛协尔学派对麦哲伦号太掉以轻心了,我们错过的这八十年里,地球是什么样的,我们一无所知.在播种时代,造出一艘这么大的飞行器,哪怕局限于太阳系内,也是难以想象的.他们肯定掌握了我们完全没有的科技,但是十几年的对话过去了,他们并没有公开更多的情报,我们了解到的不过是早就清楚的东西.很有可能,他们虽然跟我们同样来自地球,但是思想道德,政治观念和我们完全不一样.[NEWLINE][NEWLINE]
+            '最坏的打算是,他们的确向我们隐瞒了一些东西,并企图在真正跟我们打交道的时候利用这种科技不对称来获取优势地位.重新思考一下吧,盖亚星真的是一个富饶的地方吗？可能还不够,我们在最富饶的矿藏和最肥沃的土地上插遍了基地的旗帜,但至少还无法容纳所有的想法和主张.你现在跟张澜说这些话他听得进去吗？我们必须找到另一个领导者,趁一切还没有太迟,找一位年富力强,有远见卓识的人.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_AUDIO_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>一段音频<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_AUDIO_HELP<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>一段音频,发现于卫荷大学校长室的计算机中.<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_AUDIO_PEDIA<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            '老师,我想这个画面你可能需要看一下,是WYE57无人机今天早上在东南岸拍到的.'[NEWLINE][NEWLINE]
+            '这是什么?一个人型生物吗?'[NEWLINE][NEWLINE]
+            '不是人型生物,是人类.看这里,放大的话,他身上穿着衣服,能看到卫荷大学的标志.'[NEWLINE][NEWLINE]
+            '我们现在应该没有外派的研究员吧?'[NEWLINE][NEWLINE]
+            '没有.我想,可不可能是之前遗漏的克隆体.'[NEWLINE][NEWLINE]
+            '应该不会吧…等会儿,再放大点,这张脸我好像有点熟悉.不会错的,这是布尔.'[NEWLINE][NEWLINE]
+            '布尔?您是说这个人是布尔教授吗?'[NEWLINE][NEWLINE]
+            '准确来说,不是现在的布尔教授,是年轻时的布尔.'
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_SAMPLE_OF_POMEGRANATE_PERIDOTITE_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>石榴橄榄岩样本<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_SAMPLE_OF_POMEGRANATE_PERIDOTITE_HELP<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>石榴橄榄岩样本,摆放于凯瑟琳博士的桌面.<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_SAMPLE_OF_POMEGRANATE_PERIDOTITE_PEDIA<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            石榴橄榄岩及其捕虏岩(Xenolith)由金伯利岩从100km或更深处带上来,而在捕虏岩碎片中包含了一种被科学家称之为'红石榴'的常温超导体晶粒.凯瑟琳博士在一次地磁异常研究中发现了这种矿物.从'红石榴'被发现开始,在凝聚态物理领域,几乎每个月都有一篇围绕其研究的论文发布.除了超导特性,它的化学特性也十分稳定,具有极好的耐酸耐碱性.当科学家试图观察单个原子在其表面的排列状况和电子行为时,发现除了晶体外部显现的拓扑结构,它的内部仿佛是中空的.格利泽726d略带红色的自然光透过晶体表面,使得原先的晶体略微泛红.[NEWLINE][NEWLINE]
+            之前的发现被不断推翻,但是新的体系尚没有建立.人们亟待解决的问题有两个,一是红石榴单晶是如何在自然界中生长的.如凯瑟琳博士本人所言,捕掳体与残影体都是成因名词,应该只有在已获得了足够的鉴别资料,分别说明它们是火成的或变质的方式形成时,才能使用.虽然石榴石群本身是利用岩石圈热动力学去理解火成岩与变质岩起源的关键矿物,但是从现在的证据来看,红石榴的诞生可能早于我们认知的岩石圈本身,所以只能使用包体(Inclusion)这样的描述名词.[NEWLINE][NEWLINE]
+            二是常温超导的机制究竟是什么,随着研究的不断深入,不仅传统的BCS理论无法解释,最初的重费米子理论似乎也站不住脚了.即便这种常温超导体已经被越来越多地运用到殖民地生活的各方各面,包括航空,医疗,量子计算机和聚变反应堆,但如果不能完全弄明白这种物质的成因和机理,就意味着人类无法自己制备这种常温超导物质.红石榴晶体难以解释的诸多特质带来了神秘主义的观点,它也被认为是'湮没之人'存在过的间接证据之一.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_NATIONAL_POPULATION_CENSUS_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>基地人口普查报告<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_NATIONAL_POPULATION_CENSUS_HELP<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>一份简单的基地人口普查报告,发布于基地60年1月1日.<span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_ITEM_NATIONAL_POPULATION_CENSUS_PEDIA<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            基地现阶段各年龄段人口结构:[NEWLINE][NEWLINE]
+            (1)0-15岁(含不满16周岁): 36.1%(146人),其中创生人: 33.2% (134人)[NEWLINE][NEWLINE]
+            (2)16-59岁(含不满60周岁): 46.5% (188人),其中创生人: 26.0% (105人)[NEWLINE][NEWLINE]
+            (3)60周岁及以上: 17.3%(70人),其中120岁或以上: 17.3% (70人)
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+    <span class="xml-tag">&lt;/Language_en_US&gt;</span>
+<span class="xml-tag">&lt;/GameData&gt;</span></code></pre>
+</div>
+<div class="code-window" data-filename="Text_Log.xml"><div class="code-window__header"><span class="code-window__dot"></span><span class="code-window__dot"></span><span class="code-window__dot"></span><span class="code-window__title">Text_Log.xml</span></div>
+<pre class="code-window__body"><code><span class="xml-tag">&lt;!--
+<span class="xml-tag">&lt;data&gt;</span>
+    <span class="xml-tag">&lt;author&gt;</span>Spike<span class="xml-tag">&lt;/author&gt;</span>
+    <span class="xml-tag">&lt;date&gt;</span>18-Jan-22<span class="xml-tag">&lt;/date&gt;</span>
+    <span class="xml-tag">&lt;time&gt;</span>12:23:15PM<span class="xml-tag">&lt;/time&gt;</span>
+    <span class="xml-tag">&lt;version&gt;</span>3.7.26<span class="xml-tag">&lt;/version&gt;</span>
+<span class="xml-tag">&lt;/data&gt;</span>
+--&gt;</span>
+<span class="xml-tag">&lt;GameData&gt;</span>
+    <span class="xml-tag">&lt;Language_en_US&gt;</span>
+    <span class="xml-tag">&lt;Player&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_LOG_PLAYER_340804_1_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            [COLOR_LOG]日志[ENDCOLOR]: [NEWLINE][NEWLINE]
+            昨天晚上宿醉,直到中午才从床上醒来,陈业和艾什莉都去工作了.真贴心,居然没把我叫起来.自从入职巴别塔计划以来,这几年一直没什么建树,只是按部就班,直到昨天收到了来自麦哲伦号的信号.收到信号后,来不及多想,就被丹弗斯他们叫去喝酒,明明说了三十五年后才能抵达盖亚星,他们高兴得像是下个月就到了一样.[NEWLINE][NEWLINE]
+            醒来之后吃了顿午饭,重新看了一遍麦哲伦号发来的信息.信号的发出时间是一年半前,说明距离我们还有一光年多,很难想象麦哲伦号的科技能在三十五年内完成减速阶段.麦哲伦号上共有五百名船员,几乎是一个小型空间站上的人数.从麦哲伦号能够进入深空,可以看出旧世界的科技水平在εpsilonØ号之后有了巨大的飞跃.我们收到一张麦哲伦号的照片,照片上的麦哲伦号宛如一根探针,有着巨大的环形重力场和离子推进器.因为没有参考物,难以估计麦哲伦号的真实大小.丹弗斯说,麦哲伦号和εpsilonØ号在设计上有很大区别,环形重力场是一种人本位的设计方式,可能麦哲伦号并没有选择长时间的冬眠,而是选择发展出一种飞船文明.[NEWLINE][NEWLINE]
+            今天下午,张澜召开了线上会议,讨论关于答复麦哲伦号的事宜.最终决定将盖亚星的世界地图,部分生物图鉴,殖民地的照片,一些关于旧世界的问题和其他信息一并发送到指定坐标.第二批殖民者的到来是一个好消息,我们渴望知道来自旧世界的消息,也希望他们带来了,比如说植物种子动物胚胎之类的东西.只是我们等得有些久了,无论如何,八十年还是太久了.现在,知道这个消息也只会让未来三十五年里的每一天都变得更加漫长.今年的生日愿望是三十五年后我还活着.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_LOG_PLAYER_400101_1_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            [COLOR_LOG]日志[ENDCOLOR]: [NEWLINE][NEWLINE]
+            来到盖亚星的第四十个年头,在盖亚星的第十二年我度过了自己的四十岁生日.这么来看我已经六十八岁,走完人生的一半多了.而陈业,现在差不多四十岁吧.我和艾什莉最终没有要孩子,而是领养了两个创生人婴儿,我们一家四口度过了元旦.晚饭我和艾什莉宣布准备领养第三个孩子,可陈业到现在还是孤身一人,没有办法,毕竟基地不是老头子老太就是年青人.[NEWLINE][NEWLINE]
+            差不多是三十多岁的时候,我发现我一点没有科研上的才能,但是直到现在我都不知道自己还能做什么,基本上只是做点软件设计相关的东西.但是在跟孩子相处的时候,我发现基地实在没什么能给他们打发时间的东西.基地没有游戏.εpsilonØ号的数字资料库里面根本没什么像样的游戏,但是我在我的DNA硬盘里面装了不少,即便有一些我根本没玩过.我拜托艾什莉有空的话帮我解码一部分,不得不说旧世界的游戏真的,很有创意.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_LOG_PLAYER_400507_1_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            [COLOR_LOG]日志[ENDCOLOR]: [NEWLINE][NEWLINE]
+            还记得之前说做游戏的事情吗?我在硬盘里面找到了一款大错误以前的电子游戏,叫格利泽726d.我被这个名字给吸引住了,很显然,古人就已经在想着怎么殖民盖亚星了.在好奇心的驱使下,我在模拟机上玩了这款游戏.[NEWLINE][NEWLINE]
+            这款游戏做出了不少正确的预言,他们那个时候就已经知道格利泽726d是一颗潮汐锁定的行星,并且设计了与地球近似的大气和生物.可能是出于游戏性的考虑,创作者并没有多么重视游戏的科学性.在这个游戏世界里,格利泽726d具有自我意识,上面有外星智慧生物的遗迹和原始古老的宇宙邪灵.从另一个角度讲,这个游戏是相当令人不安的,它设计了多个阵营可供玩家选择,包括来自地球不同国家和派系的人,这些人为了资源,人口,科技以及意识形态展开博弈.可以说,游戏的设计者将地缘政治的那套东西简单粗暴地拿到了星际空间中.[NEWLINE][NEWLINE]
+            令我最感兴趣的是游戏中出现的一种叫做浮石的物质,这是这颗行星上的特殊矿物,拥有常温超导性质,有点像我们所说的红石榴.不同阵营的人,甚至是外星人,为了浮石大打出手.我知道这个概念大约是把沙丘中的香料和阿凡达中的Unobtanium结合起来,然后用这个杂糅产物去对应殖民时代的黄金以及工业时代的石油.这种行为是愚蠢的,历史主义的困境是想象力的困境,只有没有想象力的作者才会写出这么一锅乱炖的作品来.不过说真的,我的心里有些隐隐的不安.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_LOG_PLAYER_580319_1_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            [COLOR_LOG]日志[ENDCOLOR]: [NEWLINE][NEWLINE]
+            好像已经很久没写日记了.基地和麦哲伦号达成了协议,当麦哲伦号抵达盖亚星后,将降落于新月大陆(Crescent).我们的探测器捕捉到了麦哲伦号的图像,毫无疑问我们受到了欺骗,麦哲伦号并不是一个五百人的空间站,而是他妈的一颗小行星!我们过去跟他们聊的都是他娘的废话,他们没有任何帮助我们发展科技的意思.他们为什么要这么做,我觉得从某种意义上来讲,这可不是什么友好的表示.[NEWLINE][NEWLINE]
+            虽然到现在还只是信息交流,但是感觉双方的关系到了一种剑拔弩张的程度.这一次他们接受了我们的提案,将降落在新月大陆.这是一个怎么说,比较小的大陆或者说大一点的岛,比澳大利亚小一点,外形看上去像一轮弯月.从回信上来看,麦哲伦号将新月大陆更名为'迦南',那个圣经中的'应许之地',亚伯拉罕受上帝之命迁往的'流淌着奶和蜜'的希望之乡.妈的.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_LOG_PLAYER_650313_1_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            [COLOR_LOG]日志[ENDCOLOR]: [NEWLINE][NEWLINE]
+            凯瑟琳博士去世了.根据她的遗嘱,基地成立了包括物理,化学,生物,医学,文学,和平,计算机科学,经济学,数学等三十六个领域在内的奖项.一直到死,凯瑟琳博士都抱着跟我一样的困惑,为什么德雷克船长能够预卜先知,耀斑信号是怎么发出的,红石榴隐藏着什么秘密.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_LOG_PLAYER_700101_1_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            [COLOR_LOG]日志[ENDCOLOR]: [NEWLINE][NEWLINE]
+            七十周年.迦南水军渡过德雷克海峡,鸣炮.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_LOG_PLAYER_740721_1_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            [COLOR_LOG]日志[ENDCOLOR]: [NEWLINE][NEWLINE]
+            红石榴,红石榴.[NEWLINE][NEWLINE]
+            他来到丰产的德墨忒尔的床上,她生出了白臂的珀耳塞福涅,她被哈迪斯从她母亲身边偷走.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_LOG_PLAYER_750911_1_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            [COLOR_LOG]日志[ENDCOLOR]: [NEWLINE][NEWLINE]
+            今天去拜访赛协尔地球博物馆,参观CEL摇篮.对现在年轻人,CEL摇篮已经是老古董了,大部分人都没听说过这东西.在CEL摇篮看到了卡拉瓦乔的画作手提歌利亚头的大卫,我年轻的时候似乎在火星巡展上看到过这幅名作.盯着一幅画看了一下午,发现船长也曾看过这幅画.[NEWLINE][NEWLINE]
+            悲伤.Humilitas occidit Superbiam.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+        <span class="xml-tag">&lt;Row&gt;</span>
+            <span class="xml-tag">&lt;Tag&gt;</span>TXT_LOG_PLAYER_771023_1_DESC<span class="xml-tag">&lt;/Tag&gt;</span>
+            <span class="xml-tag">&lt;Text&gt;</span>
+            [COLOR_LOG]日志[ENDCOLOR]: [NEWLINE][NEWLINE]
+            陈业因为对幻脑开发作出的突出贡献获凯瑟琳奖.[NEWLINE][NEWLINE]
+            迦南方面邀请我们参加理论物理学讲座,没什么兴趣,但是主题跟红石榴相关.听完发现,很有意思.迦南的科学家有证据表明,红石榴内部并不是真空,而是一个微型黑洞,更准确地说是一个宇宙的模型.从理论上来讲,一个微型黑洞依然受黑洞蒸发效应的影响,会在几乎一瞬间蒸发消失.[NEWLINE][NEWLINE]
+            关于这个,他们是这么说的,在红石榴的内部,存在着一个跟我们认知并不一样的宇宙,一个二维的宇宙.事实上,他们是用宇宙全息理论来描述的,在这过程中,只存在二维对三维的描述,不存在更高维度宇宙的参与.红石榴内部的宇宙是我们这个宇宙的全息投影,并展现了一个濒死的宇宙景象.在这个宇宙中,恒星燃烧殆尽,暗能量几乎占据了宇宙中所有的空间,仅存的实物粒子只有黑洞和轻子,在永恒的岁月和霍金辐射中逐渐等待热寂的最终结局.[NEWLINE][NEWLINE]
+            这绝对不可能是自然界的手笔,而是某个智慧生物的遗留物.想象一下,这些智慧生物发现了量子引力理论,引入了宇宙常数,它们对宇宙膨胀的最终结局陷入绝望,于是他们创造出这个宇宙投影的模型.也许,它们已经做到了,知道了如何把二维的空间边界信息还原为三维的空间信息.这种操作几乎是反霍金辐射的,这些小型黑洞的寿命几乎与质子一般近乎无限,也就意味着超大质量黑洞的寿命将会减少为短短一瞬.在一瞬间,它们可以制造一场小型的宇宙大爆炸,这样的一场爆炸如同冰冷宇宙内部的余温,使生命这个概念在局部的宇宙中短暂地复活.[NEWLINE][NEWLINE]
+            迦南的科学家试图用一些强硬的手段拆开红石榴的外部结构,但是几乎同时,这个黑洞就完全蒸发了,没有留下一点痕迹.[NEWLINE][NEWLINE]
+            这个理论深深地吸引住了我.当我问陈业他的看法时,他说,你觉得任何人可能改写物理定律吗?如果某样东西与我们已知的基础科学产生了错误,并且坚实地存在,那么只有两种可能,要么我们的基础科学错了,而且错得离谱;要么这件东西根本就不属于这个世界.我们存在在这个宇宙中,就像是游戏中的角色一般,物理定律对我们而言是死律,我们永远意识不到第四面墙的存在,更不可能改写它.除非,这一切都是虚假的.
+            <span class="xml-tag">&lt;/Text&gt;</span>
+        <span class="xml-tag">&lt;/Row&gt;</span>
+    <span class="xml-tag">&lt;/Player&gt;</span>
+    <span class="xml-tag">&lt;/Language_en_US&gt;</span>
+<span class="xml-tag">&lt;/GameData&gt;</span></code></pre>
+</div>
+<p>黄昏，橙黄色的太阳，卡拉维尔帆船在基亚韦斯特兰的海面上熊熊燃烧。火苗在通红的斜帆上鼓动，巨大的主桅顷刻间崩倒，橡木制的衬板和船楼被最后点燃。在落日的余晖中，飞舞的火焰伴随着船身一点点沉入海中。</p>
+<p>多年之后，科尔特斯将回想起那个遥远的下午，他会说，这是因为那天的太阳。</p>
+<p>科尔特斯从船上带下来了530名欧洲士兵，几百名古巴原住民和非洲奴隶，其中有30名弩手，2名火绳枪手，2名龙骑兵，10门重炮，4门轻炮，16匹战马以及爱尔兰猎狼犬和獒犬。</p>
+<p>几天前，蒙特祖马二世的使者抵达维拉克鲁斯的海岸，并送上了来自特诺奇蒂特兰的礼物。在那里，科尔特斯询问了使者历史上最致命的问题之一，“蒙特祖马有很多黄金吗？”得到的回复是“是”。</p>
+<p>几天后，蒙特祖马二世在他的蛇园中倾听使者传回的消息。海面上出现了奇特的皮肤苍白的男人，他们骑着奇怪的牡鹿，并且带着可以喷出闪电和火焰的棒子，以及可以从肚子里喷出巨大岩石的野兽。蒙特祖马二世已经在位17年，在对外战争中曾三次赢得胜利，帝国的疆土在他手上达到了最大。蒙特祖马二世是无所不能的神君，且素以擅于决断闻名，被人称之为“雄辩者”，但现在他也不知道怎么做了。他应该杀死这些异族人吗？这将违背阿兹特克的外交习俗。</p>
+<p>按照古老的预言，他们是白皮肤的神灵魁札尔科亚特尔归返的使者。“魁扎尔”意为羽毛美丽的鸟，“科亚特尔”意为蛇。魁札尔科亚特尔是祭司知识之神、是邪恶的昏星与善良的晨星。蛇象征着他的肉体，是他在人间的身体，羽毛象征着它的精神世界和智慧。</p>
+<p>蒙特祖马二世的弟弟奎特拉瓦克和他的堂弟库瓦赫特莫克不断吹风，他们并非神使，而是掠夺者。奎特拉瓦克劝诫蒙特祖马，“不要邀请会让你流离失所的人进入家门。”</p>
+<p>1492年，格拉纳达的最后一位苏丹投降，摩尔人在伊比利亚半岛上的统治结束。卡斯蒂利亚王国和阿拉贡王国在联合的基础上成立了西班牙王国。同年，哥伦布发现新大陆。</p>
+<p>科尔特斯出生于卡斯蒂利亚王国的小镇麦德林的一个小贵族家庭，因为不是长子不能继承家族领地和头衔。他曾在萨拉曼卡大学学习法律，随后在1504年来到新大陆的西班牙岛伊斯帕尼奥拉。</p>
+<p>此时的阿兹特克帝国实际上是一个三国同盟，由特斯科科湖的三个城邦国家特诺奇蒂特兰，特斯库科，特拉科潘组成。由于特诺奇蒂特兰实力日渐强大，特斯库科、特拉科潘成为了它的附庸。</p>
+<p>在会见蒙特祖马二世的过程中，西班牙人被特诺奇蒂特兰城的壮观景象所震撼。卡斯蒂略记载道: 简直就像《阿玛迪斯骑士传》里描写的被施过魔法的东西。我们有些兵士说，他们见到的景象仿佛是梦境，我把这些记下来不足为奇。因为我们看到的都是见所未见，闻所未闻，连做梦都没有梦到过的东西，许多值得赞美的东西，我真不知道如何描述才好。</p>
+<p>他们的士兵到过世界上许多地方，有的到过君士坦丁堡，有的走遍了意大利和罗马，但他们从未见过如此光景。在最后，卡斯蒂略也感慨道，“如今，这块土地有过的一切都已消失，一件完好的东西都没有了。”</p>
+<p>而在神庙，他们看到了在阿兹特克人是怎么献祭给神灵的。成年人和少年的尸体从114级的台阶上滚落，神庙的墙上和供奉偶像的祭坛上沾满鲜血，牺牲者的心脏供奉于神龛。他们还见到杀人时垫在底下的石块和剖胸取心用的燧石刀。尸体的四肢会被剁去，脸皮也会被剥下来鞣制皮革使用，腿和手臂会被吃掉，至于躯干与脚将会喂给野兽。剖出的心脏放在火盆里，掺上树脂一起燃烧，跳动在牺牲者胸口的心脏化成灰烬和不断升腾的轻烟。</p>
+<p>血污溅满了神庙，恶臭缠绕其间，世界因此得到净化。血污溅满了西班牙人的内心，和科尔特斯的太阳。</p>
+<p>猎犬嘶吼，战马奔腾，炮火雷动。橙黄色的太阳变得暗淡，赤红。</p>
+<p>西班牙人带来了这片大陆前所未见的事物，造成了对阿兹特克人战术和心理上的双重打击。他们是这么描述西班牙人的骑兵的：这些“牡鹿”的脖子上挂着小铃铛，当它们快速奔跑的时候，铃铛会发出很大的声响。它们经常喷鼻息，并发出咆哮。它们很容易流汗，在奔跑中它的鼻子会产生大量的泡沫，掉到地上就像龙舌兰肥皂一样。在它们急驰的时候，会产生像雷鸣一样的声响，又好像石块雨点般落到地面上的声音。它们从大路上经过后，会在地上留下很多的小坑，似乎它的蹄子踏到的任何地方都会开裂……</p>
+<p>当西班牙人使用火炮射击时，整个城市似乎都陷入一片恐慌之中。人们四散奔逃，没有什么目的，就好像吃了毒蘑菇或者见到了鬼怪一样。他们无法克服这种恐惧，当夜晚来临的时候，恐怖的气氛会遍及整个城市，几乎所有人都无法入睡。</p>
+<p>最后阿兹特克人的酋长说，“看来这些人的确是神使无疑。”</p>
+<p>基地69年，麦哲伦号在基地的安排下降落至“应许之地”迦南，在这里基地人为他们搭建了住宅区和基础设施。</p>
+<p>一个月后，麦哲伦号常任委员会派出一部分人参观了在赛协尔大陆的基地本部。</p>
+<p>在那里，他们同样见到了难以理解的事物，具有常温超导性质的红石榴。</p>
+<p>第二年，迦南向基地宣战，战争理由是维护克隆人人权。</p>
+<p>格利泽726d，盖亚，俄耳托斯，魁札尔科亚特尔，甚至是手提歌利亚头的大卫，随便你怎么称呼它。它就这样静静旋转着，与自己的红色太阳保持着某种平衡，如同卡拉瓦乔的画作一般，一面在光中，一面在影中，强烈，真实，令人不安。</p>
+<p>它的世界是如此的宁静，即便格利泽726的太阳风常常席卷整个空间。这种宿命般的宁静，以至于那些小小的，小小的聒噪，几乎不被听到。</p>
+<p>&lt;center&gt;-第三部分      完-&lt;/center&gt;</p>
