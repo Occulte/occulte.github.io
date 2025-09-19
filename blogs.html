@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>occulte | Blogs</title>
+  <link rel="stylesheet" href="lib/style.css" />
+  <style>
+    .back-link{display:inline-block;margin-bottom:8px}
+  </style>
+</head>
+<body>
+  <header class="top-nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="index.html">occulte</a></div>
+      <nav class="tabs">
+        <a class="tab" href="index.html">Main Page</a>
+        <a class="tab active" href="blogs.html">Blogs</a>
+        <a class="tab" href="publications.html">Publications</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Blogs</h1>
+
+    <!-- 列表视图 -->
+    <div id="blogListView">
+      <div id="blogGrid" class="blog-grid"></div>
+    </div>
+
+    <!-- 文章视图（同页展示，保持导航与风格） -->
+    <article id="postView" class="post-container" hidden>
+      <div class="card post">
+        <a class="back-link" href="blogs.html" id="backLink">← 返回列表</a>
+        <div id="postMount"></div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© <span id="year"></span> occulte · Built with static files</span>
+    </div>
+  </footer>
+
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    const grid = $("#blogGrid");
+    const listView = $("#blogListView");
+    const postView = $("#postView");
+    const mount = $("#postMount");
+    const backLink = $("#backLink");
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function getSlugFromURL(){
+      const url = new URL(window.location.href);
+      const byParam = url.searchParams.get("post");
+      if (byParam) return byParam;
+      const hash = (url.hash || "").replace(/^#\/?/, "");
+      return hash || null;
+    }
+
+    function showList(){
+      postView.hidden = true;
+      listView.hidden = false;
+      document.title = "occulte | Blogs";
+    }
+
+    async function showPost(slug, replace=false){
+      if (!slug) return showList();
+      try{
+        const res = await fetch("blog-posts/" + slug + ".html?_=" + Date.now());
+        if (!res.ok){
+          mount.innerHTML = "<p>未找到这篇文章。</p>";
+        }else{
+          const html = await res.text();
+          mount.innerHTML = html;
+          const h1 = mount.querySelector("h1");
+          if (h1) document.title = "Blog · " + h1.textContent;
+        }
+      }catch(e){
+        console.error(e);
+        mount.innerHTML = "<p>加载文章失败。</p>";
+      }
+      listView.hidden = true;
+      postView.hidden = false;
+      backLink.onclick = (ev)=>{
+        ev.preventDefault();
+        history.pushState({}, "", "blogs.html");
+        showList();
+      };
+      if (!replace) {
+        history.pushState({post: slug}, "", "blogs.html?post=" + encodeURIComponent(slug));
+      }
+    }
+
+    async function loadBlogs(){
+      try{
+        const res = await fetch("content/blogs.json?_=" + Date.now());
+        const list = await res.json();
+        if (!Array.isArray(list) || !list.length){
+          grid.innerHTML = "<p>No blogs yet.</p>";
+          return;
+        }
+        grid.innerHTML = list.map(b => {
+          const slug = b.slug || (b.url ? (b.url.split('/').pop().replace(/\.html?$/, '')) : "");
+          const href = "blogs.html?post=" + encodeURIComponent(slug);
+          return `
+            <a class="blog-card" data-slug="${slug}" href="${href}">
+              <div class="blog-title">${b.title || slug}</div>
+              <div class="blog-date">${b.date || ""}</div>
+            </a>
+          `;
+        }).join("");
+
+        grid.querySelectorAll(".blog-card").forEach(a => {
+          a.addEventListener("click", (ev)=>{
+            ev.preventDefault();
+            const slug = a.getAttribute("data-slug");
+            showPost(slug);
+          });
+        });
+
+        const slug0 = getSlugFromURL();
+        if (slug0){
+          await showPost(slug0, true);
+        }
+      }catch(e){
+        console.error(e);
+        grid.innerHTML = "<p>Failed to load blogs.</p>";
+      }
+    }
+
+    window.addEventListener("popstate", () => {
+      const slug = getSlugFromURL();
+      if (slug) showPost(slug, true);
+      else showList();
+    });
+
+    loadBlogs();
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>occulte | Publications</title>
+  <link rel="stylesheet" href="lib/style.css" />
+</head>
+<body>
+  <header class="top-nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="index.html">occulte</a></div>
+      <nav class="tabs">
+        <a class="tab" href="index.html">Main Page</a>
+        <a class="tab" href="blogs.html">Blogs</a>
+        <a class="tab active" href="publications.html">Publications</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Publications</h1>
+    <div id="pubList" class="pub-list"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© <span id="year"></span> occulte</span>
+    </div>
+  </footer>
+
+  <script src="lib/publications.js"></script>
+  <script>
+    // 完整列表（不筛选 selected）
+    renderPublications('content/publications.bib', document.getElementById('pubList'));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

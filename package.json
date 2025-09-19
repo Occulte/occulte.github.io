@@ -1,0 +1,13 @@
+{
+  "name": "occulte-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "个人主页（Markdown 驱动 About/News，静态 Publications & Blogs），可通过 npm 本地运行并部署到 GitHub Pages。",
+  "scripts": {
+    "start": "http-server -c-1 -p 3000",
+    "serve": "npm run start"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

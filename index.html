@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>occulte | Home</title>
+  <link rel="stylesheet" href="lib/style.css" />
+</head>
+<body>
+  <header class="top-nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="index.html">occulte</a></div>
+      <nav class="tabs">
+        <a class="tab active" href="index.html">Main Page</a>
+        <a class="tab" href="blogs.html">Blogs</a>
+        <a class="tab" href="publications.html">Publications</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="top-grid">
+      <div class="left">
+        <div class="card">
+          <h3>Profile</h3>
+          <img class="avatar" src="assets/profile.jpg" alt="Profile photo" />
+        </div>
+        <div class="contact card">
+          <h3>Contact</h3>
+          <p>Email: <a id="email" href="mailto:jiahaoge@link.cuhk.edu.hk">jiahaoge@link.cuhk.edu.hk</a></p>
+        </div>
+      </div>
+      <div class="right card">
+        <h1 class="name">GE Jiahao</h1>
+        <div id="about" class="markdown"></div>
+      </div>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="news card">
+        <h2>News</h2>
+        <div id="news" class="markdown"></div>
+      </div>
+      <div class="publications card">
+        <h2>Selected Publications</h2>
+        <div id="pubs" class="pub-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© <span id="year"></span> occulte</span>
+    </div>
+  </footer>
+
+  <script src="lib/renderMarkdown.js"></script>
+  <script src="lib/publications.js"></script>
+  <script>
+    renderMarkdown('content/about.md', document.getElementById('about'));
+    renderMarkdown('content/news.md', document.getElementById('news'));
+    // 首页仅展示 selected=true 的论文，并且从 .bib 读取
+    renderPublications('content/publications.bib', document.getElementById('pubs'), { onlySelected: true });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
