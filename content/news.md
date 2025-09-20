@@ -1,3 +1,4 @@
+- 2025-9-19：Our work LEGO Maker: Autoregressive Image-Conditioned LEGO Model Creation is accepted to SIGGRAPH Asia 2025!
 - 2024-11-24：Our work [Learn to Create Simple LEGO® Micro Buildings](https://dlnext.acm.org/doi/10.1145/3687755) is accepted to SIGGRAPH Asia 2024!
 - 2024-7-28：Our work [Creating LEGO® Figurines from Single Images](https://dl.acm.org/doi/10.1145/3658167) is accepted to SIGGRAPH 2024!
 - 2023-12-12：Our work [Computational Design of LEGO® Sketch Art](https://dl.acm.org/doi/10.1145/3618306) is accepted to SIGGRAPH Asia 2023!
