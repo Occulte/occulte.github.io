@@ -141,3 +141,40 @@ a.pub-item:hover{box-shadow:0 10px 24px rgba(15,23,42,.08)}
 .teaser-link{display:block}
 .teaser-link .teaser{display:block}
 .teaser-link:hover .teaser{filter:brightness(0.98)}
+
+/* === authors / affiliations 网格排版 === */
+.detail-header{margin:10px 0 16px 0}
+
+.author-grid{
+  width:80%;
+  margin:8px auto 0 auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: space-evenly; /* 等距分布 */
+  gap:6px 0;
+}
+.author-grid .author-item{
+  flex: 0 0 20%;          /* 每行最多5个，超过自动换行 */
+  text-align:center;
+  white-space:nowrap;
+}
+.author-grid .author-item sup{ margin-left:2px }
+
+.affil-grid{
+  width:50%;
+  margin:6px auto 0 auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: space-evenly; /* 等距分布 */
+  gap:6px 0;
+}
+.affil-grid .affil-item{
+  flex: 0 0 20%;          /* 每行最多5个，超过自动换行 */
+  text-align:center;
+  white-space:nowrap;
+}
+.affil-grid .affil-idx{
+  font-weight:400; /* 普通字体 */
+  margin-right:4px;
+  vertical-align:super; font-size:.75em; line-height:0; /* 上标样式 */
+}
