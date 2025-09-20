@@ -127,3 +127,17 @@ pre, code, kbd, samp {
 .code-window__body code {
   font-family: inherit !important;
 }
+
+
+/* Clickable pub item preserves card look */
+a.pub-item{
+  display:flex;flex-direction:column;align-items:stretch;gap:10px;
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--panel);
+  text-decoration:none;color:inherit
+}
+a.pub-item:hover{box-shadow:0 10px 24px rgba(15,23,42,.08)}
+
+/* === 2025-09-20: Make only teaser image clickable on pub cards === */
+.teaser-link{display:block}
+.teaser-link .teaser{display:block}
+.teaser-link:hover .teaser{filter:brightness(0.98)}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publication Detail</title>
+  <link rel="stylesheet" href="lib/style.css" />
+  <style>
+    .detail-container{max-width:900px;margin:0 auto;padding:20px}
+    .back-link{display:inline-block;margin:6px 0 10px 0;color:var(--accent)}
+    .detail-header{text-align:center;margin:10px 0 16px 0}
+    .detail-title{margin:.2em 0;font-size:32px}
+    .detail-authors,.detail-affiliations,.detail-venue{color:var(--muted)}
+    .detail-teaser{margin:10px auto 18px auto;text-align:center}
+    .detail-teaser img{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:12px;background:#eef3ff}
+    .detail-teaser figcaption{margin-top:8px;color:var(--muted);font-size:14px}
+    .md-section{margin:16px 0}
+    .md-section-title{text-align:left;margin:.2em 0 .4em 0}
+    .md-section-body p{margin:.6em 0}
+    .md-sep{border:none;border-top:1px solid var(--border);margin:16px 0}
+    .md-img img{border-radius:10px;border:1px solid var(--border);background:#eef3ff}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div id="detailMount"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© <span id="year"></span> occulte</span>
+    </div>
+  </footer>
+
+  <script src="lib/renderMarkdown.js"></script>
+  <script src="lib/publication-detail.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
