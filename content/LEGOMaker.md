@@ -5,6 +5,11 @@ First, we design a compact LEGO tokenization scheme to serialize LEGO models and
 
 Extensive evaluations and comparisons are conducted on two object categories, facade and portrait, over metrics in four aspects: geometry, color, semantics, and structural integrity, together with a user study. Experimental results demonstrate the versatility and compelling strengths of LEGO Maker in producing structures and details given by the reference image. Also, the evaluation scores manifest that our method clearly surpasses the baselines, consistently for all evaluation metrics.
 
+# Method
+<input>image: assets/LEGOMaker/architecture.png; ratio: 1</input>
+\vspace{-1}
+(a) LEGO tokenization serializes a LEGO model brick-by-brick in a bottom-up manner into a sequence of tokens (type, color, orientation, and position), which are integer indices in our LEGO vocabulary. (b) LEGO generation: taking the image embedding from input image and brick token sequence from associated LEGO model, we train LEGO Maker (backbone, six transformer (TF) layers, and output head) to predict tokens autoregressively. Also, we adopt a multi-token prediction strategy to compute losses for predicting six consecutive future tokens altogether to aim for brick-by-brick planning by preconsidering more brick attributes in the generation. Note that BOS means beginning of sentence; EOS means end of sentence; and CE means cross entropy.
+
 # Results
 <input>image: assets/LEGOMaker/facade_gallery.png; ratio: 1</input>
 \vspace{-1}

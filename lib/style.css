@@ -178,3 +178,15 @@ a.pub-item:hover{box-shadow:0 10px 24px rgba(15,23,42,.08)}
   margin-right:4px;
   vertical-align:super; font-size:.75em; line-height:0; /* 上标样式 */
 }
+
+/* === legend row for author markers: width 0.8, same visual language === */
+.legend-grid{
+  width:80%;
+  margin:6px auto 0 auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:6px 16px;
+  color: var(--muted);
+}
+.legend-grid .legend-symbol{font-weight:700;margin-right:4px}
