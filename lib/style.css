@@ -84,6 +84,8 @@ a:hover{text-decoration:underline}
   padding:10px;margin-top:10px;white-space:pre;overflow-x:auto;
   font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#0b1220
 }
+/* Publication detail: ensure BibTeX is visible on the detail page */
+.bibtex.detail-bibtex { display: block; }
 .toggle-btn{
   margin-top:8px;display:inline-block;border:1px solid var(--border);border-radius:10px;
   padding:6px 10px;background:#eef4ff;color:#0b1220;cursor:pointer
