@@ -192,3 +192,30 @@ a.pub-item:hover{box-shadow:0 10px 24px rgba(15,23,42,.08)}
   color: var(--muted);
 }
 .legend-grid .legend-symbol{font-weight:700;margin-right:4px}
+
+
+/* === Publication detail: Download button === */
+.detail-download{
+  margin-top:10px;
+}
+.download-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:12px;
+  background:#111;
+  color:#fff;
+  font-weight:600;
+  line-height:1;
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+.download-btn:hover{
+  filter:brightness(1.05);
+  text-decoration:none;
+}
+.download-btn svg{
+  display:block;
+}
