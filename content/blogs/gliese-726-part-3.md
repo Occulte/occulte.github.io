@@ -1,6 +1,6 @@
 # Gliese 726 Part 3
 
-*2022-01-18 · science fiction · novel*
+*2022-01-18*
 
 **Text_Building.xml**
 

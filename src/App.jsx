@@ -248,8 +248,8 @@ const MarkdownRenderer = ({ content }) => {
       }
       const codeText = codeContent.join('\n');
       processedElements.push(
-        <pre key={`code-${i}`} className="my-6 p-4 bg-neutral-100 border-2 border-black overflow-x-auto">
-          <code className="text-sm font-mono text-neutral-800">{codeText}</code>
+        <pre key={`code-${i}`} className="my-6 p-6 bg-neutral-100 border-2 border-black overflow-y-auto" style={{ maxHeight: '66vh' }}>
+          <code className="text-sm font-mono text-neutral-800 whitespace-pre-wrap break-words" style={{ tabSize: 4 }}>{codeText}</code>
         </pre>
       );
       i = j + 1;

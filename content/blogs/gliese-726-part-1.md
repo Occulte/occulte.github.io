@@ -1,6 +1,6 @@
 # Gliese 726 Part 1
 
-*2021-12-01 · science fiction · novel*
+*2021-12-01*
 
 **Text_Cargo.xml**
 
