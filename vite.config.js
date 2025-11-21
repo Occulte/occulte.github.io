@@ -60,6 +60,7 @@ function staticContentPlugin() {
 
 export default defineConfig({
   root: 'src',
+  base: '/',
   plugins: [react(), staticContentPlugin()],
   server: {
     port: 3000,
