@@ -45,14 +45,22 @@ function staticContentPlugin() {
         server.middlewares.use(`/${dir}`, (req, res, next) => sendFile(dirRoot, req, res, next));
       });
     },
-    writeBundle() {
+    closeBundle() {
       const distDir = path.resolve(__dirname, 'dist');
       passthroughDirs.forEach(dir => {
         const srcDir = path.resolve(__dirname, dir);
-        const destDir = path.join(distDir, dir);
         if (!fs.existsSync(srcDir)) return;
-        fs.rmSync(destDir, { recursive: true, force: true });
-        fs.cpSync(srcDir, destDir, { recursive: true });
+        
+        if (dir === 'assets') {
+          // 对于 assets 目录，只复制源文件，不删除 Vite 生成的文件
+          const destDir = path.join(distDir, dir);
+          fs.cpSync(srcDir, destDir, { recursive: true });
+        } else {
+          // 对于其他目录（如 content），完全替换
+          const destDir = path.join(distDir, dir);
+          fs.rmSync(destDir, { recursive: true, force: true });
+          fs.cpSync(srcDir, destDir, { recursive: true });
+        }
       });
     }
   };
