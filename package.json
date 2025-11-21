@@ -4,10 +4,23 @@
   "private": true,
   "description": "个人主页（Markdown 驱动 About/News，静态 Publications & Blogs），可通过 npm 本地运行并部署到 GitHub Pages。",
   "scripts": {
-    "start": "http-server -c-1 -p 3000",
-    "serve": "npm run start"
+    "start": "vite dev --config vite.config.js",
+    "dev": "vite dev --config vite.config.js",
+    "build": "vite build --config vite.config.js",
+    "preview": "vite preview --config vite.config.js",
+    "serve:static": "http-server -c-1 -p 3000"
   },
   "dependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "lucide-react": "^0.554.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.13",
+    "vite": "^6.4.1"
   }
 }
