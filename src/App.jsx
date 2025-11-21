@@ -306,6 +306,7 @@ const MarkdownRenderer = ({ content }) => {
     
     // Handle input tags for images and videos
     if (trimmed.startsWith('<input>')) {
+      let skipNextLine = false;
       const inputMatch = trimmed.match(/<input>(.*?)<\/input>/);
       if (inputMatch) {
         const content = inputMatch[1];
@@ -313,52 +314,93 @@ const MarkdownRenderer = ({ content }) => {
         const params = {};
         
         parts.forEach(part => {
-          const [key, value] = part.split(':').map(s => s.trim());
-          params[key] = value;
+          const colonIndex = part.indexOf(':');
+          if (colonIndex > -1) {
+            const key = part.substring(0, colonIndex).trim();
+            const value = part.substring(colonIndex + 1).trim();
+            params[key] = value;
+          }
         });
         
         const ratio = parseFloat(params.ratio) || 1;
         
+        // Check if next line is a caption (non-empty text line)
+        let caption = null;
+        if (i + 1 < lines.length) {
+          const nextLine = lines[i + 1].trim();
+          // Caption is any non-empty line that's not a heading, input tag, or HTML tag
+          if (nextLine && 
+              !nextLine.startsWith('#') && 
+              !nextLine.startsWith('<input>') &&
+              !nextLine.startsWith('<center>') &&
+              !nextLine.startsWith('</center>') &&
+              !nextLine.startsWith('<i>') &&
+              !nextLine.startsWith('```')) {
+            caption = nextLine;
+            skipNextLine = true;
+          }
+        }
+        
         if (params.image) {
           // Handle image
           const imageSrc = params.image.startsWith('http') ? params.image : `/${params.image}`;
+          const widthPercent = ratio * 100;
           processedElements.push(
-            <div key={`input-img-${i}`} className="my-8">
+            <div key={`input-img-${i}`} className="my-8 flex flex-col items-center">
               <img 
                 src={imageSrc} 
                 alt="Content" 
-                className="w-full border-2 border-black"
-                style={{ aspectRatio: ratio }}
+                className="border-2 border-black"
+                style={{ width: `${widthPercent}%`, height: 'auto' }}
               />
+              {caption && (
+                <p className="mt-2 text-sm text-center" style={{ width: `${widthPercent}%` }}>
+                  {renderLineWithLinksAndFormatting(caption)}
+                </p>
+              )}
             </div>
           );
         } else if (params.video) {
           // Handle YouTube video
           let videoId = '';
-          if (params.video.includes('youtu.be/')) {
-            videoId = params.video.split('youtu.be/')[1].split('?')[0];
-          } else if (params.video.includes('youtube.com/watch?v=')) {
-            videoId = params.video.split('v=')[1].split('&')[0];
+          const videoUrl = params.video;
+          
+          if (videoUrl.includes('youtu.be/')) {
+            videoId = videoUrl.split('youtu.be/')[1].split('?')[0];
+          } else if (videoUrl.includes('youtube.com/watch?v=')) {
+            videoId = videoUrl.split('v=')[1].split('&')[0];
+          } else if (videoUrl.includes('youtube.com/embed/')) {
+            videoId = videoUrl.split('embed/')[1].split('?')[0];
           }
           
           if (videoId) {
-            const height = ratio ? `${ratio * 50}vh` : '450px';
             processedElements.push(
-              <div key={`input-vid-${i}`} className="my-8 border-2 border-black" style={{ position: 'relative', width: '100%', paddingBottom: '56.25%' }}>
-                <iframe
-                  src={`https://www.youtube.com/embed/${videoId}`}
-                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title="YouTube video"
-                />
+              <div key={`input-vid-${i}`} className="my-8 flex flex-col items-center">
+                <div className="border-2 border-black" style={{ position: 'relative', width: '100%', paddingBottom: '56.25%' }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${videoId}`}
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title="YouTube video"
+                  />
+                </div>
+                {caption && (
+                  <p className="mt-2 text-sm text-center">
+                    {renderLineWithLinksAndFormatting(caption)}
+                  </p>
+                )}
               </div>
             );
           }
         }
       }
       i++;
+      // Skip the caption line if we used it
+      if (skipNextLine) {
+        i++;
+      }
       continue;
     }
     
@@ -506,6 +548,7 @@ export default function App() {
   const [blogContent, setBlogContent] = useState('');
   const [aboutContent, setAboutContent] = useState('');
   const [newsItems, setNewsItems] = useState([]);
+  const [paperUrl, setPaperUrl] = useState('');
   const [publications, setPublications] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -546,14 +589,31 @@ export default function App() {
     const loadDetail = async () => {
       if (!activePub?.detailsFile) {
         setDetailContent('');
+        setPaperUrl('');
         return;
       }
       try {
-        const md = await fetchText(activePub.detailsFile);
+        let md = await fetchText(activePub.detailsFile);
+        
+        // Extract paper URL from Download section
+        const downloadMatch = md.match(/^#\s*Download\s*\n([\s\S]*?)(?=^#\s|\Z)/m);
+        if (downloadMatch) {
+          const downloadBlock = downloadMatch[1];
+          const paperMatch = downloadBlock.match(/^\s*paper\s*:\s*(\S+)/m);
+          if (paperMatch) {
+            setPaperUrl(paperMatch[1]);
+          }
+          // Remove Download section from content
+          md = md.replace(downloadMatch[0], '');
+        } else {
+          setPaperUrl('');
+        }
+        
         setDetailContent(md);
       } catch (e) {
         console.error(e);
         setDetailContent('');
+        setPaperUrl('');
       }
     };
     loadDetail();
@@ -637,8 +697,25 @@ export default function App() {
                     <span className="inline-block bg-red-600 text-white px-4 py-2 text-sm font-bold uppercase">{pub?.abbr}</span>
                     <span className="font-mono font-bold text-neutral-400">{pub?.year}</span>
                 </div>
-                <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8 text-black">{pub?.title}</h1>
-                <p className="text-xl text-neutral-600 font-medium">{pub?.authors}</p>
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-8 text-black">{pub?.title}</h1>
+                <p className="text-xl text-neutral-600 font-medium mb-6">{pub?.authors}</p>
+                {paperUrl && (
+                  <a 
+                    href={paperUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-bold uppercase text-sm border-2 border-black hover:bg-white hover:text-black transition-colors"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M14 2v6h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M16 13H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M16 17H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M10 9H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    Paper
+                  </a>
+                )}
             </div>
 
             <div className="prose prose-lg max-w-none prose-headings:font-bold prose-p:text-neutral-700">
