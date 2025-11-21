@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Menu, X, Github, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const CONTENT_BASE = '/content';
 const PROFILE = {
@@ -238,7 +240,7 @@ const MarkdownRenderer = ({ content }) => {
     
     // Handle code blocks (``` or ````)
     if (trimmed.startsWith('```')) {
-      const language = trimmed.slice(3).trim();
+      const language = trimmed.slice(3).trim() || 'text';
       let codeContent = [];
       let j = i + 1;
       // Collect lines until closing ```
@@ -247,10 +249,56 @@ const MarkdownRenderer = ({ content }) => {
         j++;
       }
       const codeText = codeContent.join('\n');
+      
+      // Custom style for syntax highlighter
+      const customStyle = {
+        maxHeight: '66vh',
+        margin: '1.5rem 0',
+        border: '2px solid black',
+        borderRadius: '0',
+        background: '#f5f5f5',
+        fontSize: '0.875rem',
+        lineHeight: '1.5',
+        overflowX: 'hidden',
+        overflowY: 'auto',
+        whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word',
+      };
+      
+      // Custom theme based on tomorrow with black text content and proper wrapping
+      const customTheme = {
+        ...tomorrow,
+        'code[class*="language-"]': {
+          ...tomorrow['code[class*="language-"]'],
+          color: '#000000',
+          whiteSpace: 'pre-wrap',
+          wordBreak: 'break-word',
+          overflowWrap: 'break-word',
+        },
+        'pre[class*="language-"]': {
+          ...tomorrow['pre[class*="language-"]'],
+          color: '#000000',
+          whiteSpace: 'pre-wrap',
+          wordBreak: 'break-word',
+          overflowWrap: 'break-word',
+        },
+        'plain': { color: '#000000' },
+        'text': { color: '#000000' },
+      };
+      
       processedElements.push(
-        <pre key={`code-${i}`} className="my-6 p-6 bg-neutral-100 border-2 border-black overflow-y-auto" style={{ maxHeight: '66vh' }}>
-          <code className="text-sm font-mono text-neutral-800 whitespace-pre-wrap break-words" style={{ tabSize: 4 }}>{codeText}</code>
-        </pre>
+        <SyntaxHighlighter
+          key={`code-${i}`}
+          language={language}
+          style={customTheme}
+          customStyle={customStyle}
+          wrapLines={true}
+          wrapLongLines={true}
+          showLineNumbers={false}
+          PreTag="div"
+        >
+          {codeText}
+        </SyntaxHighlighter>
       );
       i = j + 1;
       continue;
@@ -272,10 +320,17 @@ const MarkdownRenderer = ({ content }) => {
           centerContent.push(lines[j]);
         }
       }
-      const centerHtml = centerContent.join('\n');
-      processedElements.push(
-        <div key={`center-${i}`} className="my-6 text-center italic text-neutral-600" dangerouslySetInnerHTML={{ __html: centerHtml }} />
-      );
+      // Extract content between <center> tags
+      const fullText = centerContent.join('\n');
+      const contentMatch = fullText.match(/<center>([\s\S]*?)<\/center>/);
+      if (contentMatch) {
+        const innerContent = contentMatch[1].trim();
+        processedElements.push(
+          <div key={`center-${i}`} className="my-6 text-center italic text-neutral-600">
+            {renderLineWithLinksAndFormatting(innerContent, `${i}-center`)}
+          </div>
+        );
+      }
       i = j + 1;
       continue;
     }
