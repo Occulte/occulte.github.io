@@ -1,2 +1,3 @@
 I’m currently a 3rd-year PhD candidate in the Department of Computer Science and Engineering (CSE) at the Chinese University of Hong Kong, supervised by Prof. [Chi-Wing FU, Philip](https://www.cse.cuhk.edu.hk/~cwfu/).Before studying in CUHK, I obtained my Bachelor’s degree from Xidian University.
 I'm also a novelist and poet writing in Chinese. You can see my works in `WRITINGS`.
+- jiahaoge@link.cuhk.edu.hk

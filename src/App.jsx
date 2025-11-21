@@ -91,8 +91,7 @@ const formatAuthors = (authorsStr) => {
         return `${(last || '').trim()} ${(first || '').trim()}`.trim();
       }
       return p;
-    })
-    .map(p => p.replace(/[*†]/g, '').trim());
+    });
   return parts.join(', ');
 };
 
@@ -145,49 +144,184 @@ const mapBibEntryToPub = (entry) => {
 const MarkdownRenderer = ({ content }) => {
   if (!content) return null;
   const lines = content.split('\n');
-  const renderLineWithLinks = (line, baseKey) => {
-    const regex = /\[(.+?)\]\((https?:\/\/[^\s)]+)\)/g;
-    const parts = [];
-    let lastIndex = 0;
-    let match;
-    let linkIdx = 0;
-    while ((match = regex.exec(line)) !== null) {
-      if (match.index > lastIndex) {
-        parts.push(line.slice(lastIndex, match.index));
+  const renderLineWithLinksAndFormatting = (line, baseKey) => {
+    const elements = [];
+    let remainingText = line;
+    let elementIdx = 0;
+    
+    // Process the line character by character to handle nested formatting
+    const processText = (text) => {
+      const parts = [];
+      let currentIdx = 0;
+      
+      // Combined regex to match links, bold, HTML italic tags, and markdown italic
+      // Order matters: bold (**) before italic (*), links first
+      const combinedRegex = /(\[(.+?)\]\((https?:\/\/[^\s)]+)\))|(<i>(.+?)<\/i>)|(\*\*(.+?)\*\*)|(\*(.+?)\*)|(__(.+?)__)|(_(.+?)_)/g;
+      let match;
+      
+      while ((match = combinedRegex.exec(text)) !== null) {
+        // Add text before the match
+        if (match.index > currentIdx) {
+          parts.push(text.slice(currentIdx, match.index));
+        }
+        
+        if (match[1]) {
+          // Link match [text](url)
+          parts.push(
+            <a
+              key={`${baseKey}-link-${elementIdx++}`}
+              href={match[3]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-600 underline decoration-2 underline-offset-4 hover:text-black"
+            >
+              {match[2]}
+            </a>
+          );
+        } else if (match[4]) {
+          // HTML italic tag <i>text</i>
+          parts.push(
+            <em key={`${baseKey}-i-${elementIdx++}`} className="italic text-neutral-600">
+              {match[5]}
+            </em>
+          );
+        } else if (match[6]) {
+          // Bold with **
+          parts.push(
+            <strong key={`${baseKey}-strong-${elementIdx++}`} className="font-bold text-black">
+              {match[7]}
+            </strong>
+          );
+        } else if (match[8]) {
+          // Italic with * 
+          parts.push(
+            <em key={`${baseKey}-em-${elementIdx++}`} className="italic text-neutral-600">
+              {match[9]}
+            </em>
+          );
+        } else if (match[10]) {
+          // Bold with __
+          parts.push(
+            <strong key={`${baseKey}-strong2-${elementIdx++}`} className="font-bold text-black">
+              {match[11]}
+            </strong>
+          );
+        } else if (match[12]) {
+          // Italic with _
+          parts.push(
+            <em key={`${baseKey}-em2-${elementIdx++}`} className="italic text-neutral-600">
+              {match[13]}
+            </em>
+          );
+        }
+        
+        currentIdx = match.index + match[0].length;
       }
-      parts.push(
-        <a
-          key={`${baseKey}-link-${linkIdx}`}
-          href={match[2]}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-red-600 underline decoration-2 underline-offset-4 hover:text-black"
-        >
-          {match[1]}
-        </a>
-      );
-      linkIdx += 1;
-      lastIndex = match.index + match[0].length;
-    }
-    if (lastIndex < line.length) {
-      parts.push(line.slice(lastIndex));
-    }
-    return parts;
+      
+      // Add remaining text
+      if (currentIdx < text.length) {
+        parts.push(text.slice(currentIdx));
+      }
+      
+      return parts.length > 0 ? parts : text;
+    };
+    
+    return processText(remainingText);
   };
+
+  // Handle multi-line center blocks and code blocks
+  const processedElements = [];
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
+    
+    // Handle code blocks (``` or ````)
+    if (trimmed.startsWith('```')) {
+      const language = trimmed.slice(3).trim();
+      let codeContent = [];
+      let j = i + 1;
+      // Collect lines until closing ```
+      while (j < lines.length && !lines[j].trim().startsWith('```')) {
+        codeContent.push(lines[j]);
+        j++;
+      }
+      const codeText = codeContent.join('\n');
+      processedElements.push(
+        <pre key={`code-${i}`} className="my-6 p-4 bg-neutral-100 border-2 border-black overflow-x-auto">
+          <code className="text-sm font-mono text-neutral-800">{codeText}</code>
+        </pre>
+      );
+      i = j + 1;
+      continue;
+    }
+    
+    // Handle center blocks (potentially multi-line)
+    if (trimmed.startsWith('<center>')) {
+      let centerContent = [trimmed];
+      let j = i;
+      // Check if center tag is closed on same line
+      if (!trimmed.includes('</center>')) {
+        j++;
+        // Collect lines until closing tag
+        while (j < lines.length && !lines[j].trim().includes('</center>')) {
+          centerContent.push(lines[j]);
+          j++;
+        }
+        if (j < lines.length) {
+          centerContent.push(lines[j]);
+        }
+      }
+      const centerHtml = centerContent.join('\n');
+      processedElements.push(
+        <div key={`center-${i}`} className="my-6 text-center italic text-neutral-600" dangerouslySetInnerHTML={{ __html: centerHtml }} />
+      );
+      i = j + 1;
+      continue;
+    }
+    
+    // Handle markdown syntax
+    if (line.startsWith('# ')) {
+      processedElements.push(
+        <h1 key={`h1-${i}`} className="text-4xl font-bold mt-10 mb-6 pb-4 border-b-4 border-black tracking-tight">
+          {renderLineWithLinksAndFormatting(line.slice(2), `${i}-h1`)}
+        </h1>
+      );
+    } else if (line.startsWith('## ')) {
+      processedElements.push(
+        <h2 key={`h2-${i}`} className="text-2xl font-bold mt-8 mb-4 flex items-center gap-3">
+          <span className="w-3 h-3 bg-red-600 inline-block"></span>
+          {renderLineWithLinksAndFormatting(line.slice(3), `${i}-h2`)}
+        </h2>
+      );
+    } else if (line.startsWith('- ')) {
+      processedElements.push(
+        <li key={`li-${i}`} className="ml-4 list-square text-neutral-700 marker:text-red-600 pl-2">
+          {renderLineWithLinksAndFormatting(line.slice(2), `${i}-li`)}
+        </li>
+      );
+    } else if (line.startsWith('![')) {
+      const match = line.match(/!\[(.*?)\]\((.*?)\)/);
+      if (match) {
+        processedElements.push(
+          <img key={`img-${i}`} src={match[2]} alt={match[1]} className="w-full border-2 border-neutral-200 my-8" />
+        );
+      }
+    } else if (trimmed === '') {
+      processedElements.push(<br key={`br-${i}`} />);
+    } else {
+      processedElements.push(
+        <p key={`p-${i}`} className="text-lg font-normal leading-relaxed">
+          {renderLineWithLinksAndFormatting(line, i)}
+        </p>
+      );
+    }
+    i++;
+  }
 
   return (
     <div className="space-y-4 text-neutral-800 leading-relaxed">
-      {lines.map((line, idx) => {
-        if (line.startsWith('# ')) return <h1 key={idx} className="text-4xl font-bold mt-10 mb-6 pb-4 border-b-4 border-black tracking-tight">{renderLineWithLinks(line.slice(2), `${idx}-h1`)}</h1>;
-        if (line.startsWith('## ')) return <h2 key={idx} className="text-2xl font-bold mt-8 mb-4 flex items-center gap-3"><span className="w-3 h-3 bg-red-600 inline-block"></span>{renderLineWithLinks(line.slice(3), `${idx}-h2`)}</h2>;
-        if (line.startsWith('- ')) return <li key={idx} className="ml-4 list-square text-neutral-700 marker:text-red-600 pl-2">{renderLineWithLinks(line.slice(2), `${idx}-li`)}</li>;
-        if (line.startsWith('![')) {
-            const match = line.match(/!\[(.*?)\]\((.*?)\)/);
-            if (match) return <img key={idx} src={match[2]} alt={match[1]} className="w-full border-2 border-neutral-200 my-8" />;
-        }
-        if (line.trim() === '') return <br key={idx} />;
-        return <p key={idx} className="text-lg font-normal">{renderLineWithLinks(line, idx)}</p>;
-      })}
+      {processedElements}
     </div>
   );
 };
@@ -255,6 +389,8 @@ export default function App() {
   const [view, setView] = useState('home');
   const [activePub, setActivePub] = useState(null);
   const [detailContent, setDetailContent] = useState('');
+  const [activeBlog, setActiveBlog] = useState(null);
+  const [blogContent, setBlogContent] = useState('');
   const [aboutContent, setAboutContent] = useState('');
   const [newsItems, setNewsItems] = useState([]);
   const [publications, setPublications] = useState([]);
@@ -310,6 +446,23 @@ export default function App() {
     loadDetail();
   }, [activePub]);
 
+  useEffect(() => {
+    const loadBlog = async () => {
+      if (!activeBlog?.slug) {
+        setBlogContent('');
+        return;
+      }
+      try {
+        const md = await fetchText(`${CONTENT_BASE}/blogs/${activeBlog.slug}.md`);
+        setBlogContent(md);
+      } catch (e) {
+        console.error(e);
+        setBlogContent('加载文章失败。');
+      }
+    };
+    loadBlog();
+  }, [activeBlog]);
+
   const handlePubClick = (pub) => {
     if (pub.detailsFile) {
       setActivePub(pub);
@@ -317,6 +470,15 @@ export default function App() {
       window.scrollTo(0, 0);
     } else if (pub.links?.html) {
       window.open(pub.links.html, '_blank');
+    }
+  };
+
+  const handleBlogClick = (slug) => {
+    const blog = BLOGS.find(b => b.slug === slug);
+    if (blog) {
+      setActiveBlog(blog);
+      setView('blog-detail');
+      window.scrollTo(0, 0);
     }
   };
 
@@ -373,6 +535,56 @@ export default function App() {
         );
       }
 
+      case 'blog-detail': {
+        // Parse blog content to extract title and metadata
+        const blogLines = blogContent.split('\n');
+        let title = activeBlog?.title || '';
+        let metadata = '';
+        let contentStart = 0;
+        
+        // Extract title from first line if it's a heading
+        if (blogLines[0]?.startsWith('# ')) {
+          title = blogLines[0].slice(2).trim();
+          contentStart = 1;
+        }
+        
+        // Extract metadata from second line if it's in format _..._
+        if (blogLines[contentStart]?.trim().startsWith('_') && blogLines[contentStart]?.trim().endsWith('_')) {
+          metadata = blogLines[contentStart].trim().slice(1, -1);
+          contentStart++;
+        }
+        
+        // Skip empty lines after title/metadata
+        while (contentStart < blogLines.length && blogLines[contentStart].trim() === '') {
+          contentStart++;
+        }
+        
+        const actualContent = blogLines.slice(contentStart).join('\n');
+        
+        return (
+          <div className="animate-in fade-in slide-in-from-bottom-8 duration-500 max-w-4xl mx-auto pt-12 pb-24 px-6">
+            <button 
+              onClick={() => setView('writings')} 
+              className="group flex items-center gap-3 text-black font-bold uppercase tracking-widest text-sm mb-12 hover:text-red-600 transition-colors"
+            >
+              <div className="p-1 border-2 border-black group-hover:border-red-600"><ChevronLeft size={16} /></div>
+              Back to Writings
+            </button>
+
+            <div className="mb-10 pb-6 border-b-4 border-black">
+              <h1 className="text-5xl md:text-6xl font-black leading-tight text-black mb-4">{title}</h1>
+              {metadata && (
+                <span className="text-sm italic text-neutral-500">{metadata}</span>
+              )}
+            </div>
+
+            <div className="prose prose-lg max-w-none prose-headings:font-bold prose-p:text-neutral-800">
+              <MarkdownRenderer content={actualContent || '内容加载中...'} />
+            </div>
+          </div>
+        );
+      }
+
       case 'research':
         return (
           <div className="max-w-7xl mx-auto pt-24 px-6 pb-24 animate-in fade-in">
@@ -388,10 +600,10 @@ export default function App() {
       case 'writings':
         return (
             <div className="max-w-7xl mx-auto pt-24 px-6 pb-24 animate-in fade-in">
-               <SectionHeader title="Writings" number="1" />
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <SectionHeader title="Writings" number="1" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     {BLOGS.map((blog, idx) => (
-                        <div key={idx} className="cursor-pointer block p-8 border-4 border-black hover:bg-black hover:text-white transition-all group relative overflow-hidden">
+                        <div key={idx} onClick={() => handleBlogClick(blog.slug)} className="cursor-pointer block p-8 border-4 border-black hover:bg-black hover:text-white transition-all group relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-16 h-16 bg-red-600 -mr-8 -mt-8 rotate-45 transition-transform group-hover:scale-150"></div>
                             <span className="text-xs font-mono font-bold text-neutral-400 group-hover:text-neutral-500 block mb-4 relative z-10">{blog.date}</span>
                             <h3 className="text-2xl font-bold mb-6 relative z-10">{blog.title}</h3>
@@ -514,7 +726,7 @@ export default function App() {
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-0 border-t border-l border-neutral-800">
                         {BLOGS.slice(0,4).map((blog, i) => (
-                            <div key={i} className="group cursor-pointer border-r border-b border-neutral-800 p-8 hover:bg-neutral-900 transition-colors relative">
+                            <div key={i} onClick={() => handleBlogClick(blog.slug)} className="group cursor-pointer border-r border-b border-neutral-800 p-8 hover:bg-neutral-900 transition-colors relative">
                                 <span className="text-xs font-mono text-red-600 mb-4 block">{blog.date}</span>
                                 <h3 className="text-xl font-bold leading-tight mb-8 group-hover:text-red-500 transition-colors">{blog.title}</h3>
                                 <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity">
