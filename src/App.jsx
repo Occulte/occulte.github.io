@@ -121,7 +121,7 @@ const parseBibTeX = (text) => {
 const mapBibEntryToPub = (entry) => {
   const f = entry.fields || {};
   const preview = normalizePreview(f.preview || '');
-  const detailsFile = f.details ? `${CONTENT_BASE}/${f.details}` : null;
+  const detailsFile = f.details ? `${CONTENT_BASE}/publications/${f.details}` : null;
   return {
     id: entry.key || f.title || 'untitled',
     abbr: f.abbr || '',
@@ -301,6 +301,64 @@ const MarkdownRenderer = ({ content }) => {
         </SyntaxHighlighter>
       );
       i = j + 1;
+      continue;
+    }
+    
+    // Handle input tags for images and videos
+    if (trimmed.startsWith('<input>')) {
+      const inputMatch = trimmed.match(/<input>(.*?)<\/input>/);
+      if (inputMatch) {
+        const content = inputMatch[1];
+        const parts = content.split(';').map(p => p.trim());
+        const params = {};
+        
+        parts.forEach(part => {
+          const [key, value] = part.split(':').map(s => s.trim());
+          params[key] = value;
+        });
+        
+        const ratio = parseFloat(params.ratio) || 1;
+        
+        if (params.image) {
+          // Handle image
+          const imageSrc = params.image.startsWith('http') ? params.image : `/${params.image}`;
+          processedElements.push(
+            <div key={`input-img-${i}`} className="my-8">
+              <img 
+                src={imageSrc} 
+                alt="Content" 
+                className="w-full border-2 border-black"
+                style={{ aspectRatio: ratio }}
+              />
+            </div>
+          );
+        } else if (params.video) {
+          // Handle YouTube video
+          let videoId = '';
+          if (params.video.includes('youtu.be/')) {
+            videoId = params.video.split('youtu.be/')[1].split('?')[0];
+          } else if (params.video.includes('youtube.com/watch?v=')) {
+            videoId = params.video.split('v=')[1].split('&')[0];
+          }
+          
+          if (videoId) {
+            const height = ratio ? `${ratio * 50}vh` : '450px';
+            processedElements.push(
+              <div key={`input-vid-${i}`} className="my-8 border-2 border-black" style={{ position: 'relative', width: '100%', paddingBottom: '56.25%' }}>
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="YouTube video"
+                />
+              </div>
+            );
+          }
+        }
+      }
+      i++;
       continue;
     }
     
