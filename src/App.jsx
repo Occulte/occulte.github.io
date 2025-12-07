@@ -723,7 +723,7 @@ export default function App() {
           )}
         </div>
         <div className="prose prose-lg max-w-none prose-headings:font-bold prose-p:text-neutral-700">
-          <MarkdownRenderer content={content || '内容加载中...'} />
+          <MarkdownRenderer content={content || 'Loading...'} />
         </div>
       </div>
     );
@@ -774,7 +774,7 @@ export default function App() {
           {metadata && <span className="text-sm italic text-neutral-500">{metadata}</span>}
         </div>
         <div className="prose prose-lg max-w-none prose-headings:font-bold prose-p:text-neutral-800">
-          <MarkdownRenderer content={actual || '内容加载中...'} />
+          <MarkdownRenderer content={actual || 'Loading...'} />
         </div>
       </div>
     );
