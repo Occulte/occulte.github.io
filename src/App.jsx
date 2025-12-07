@@ -671,8 +671,7 @@ export default function App() {
 
     useEffect(() => {
       if (pub) {
-        const displayTitle = getPublicationSlug(pub) || slug;
-        document.title = displayTitle;
+        document.title = pub.title || slug;
       }
     }, [pub, slug]);
 
@@ -707,8 +706,6 @@ export default function App() {
 
     if (!pub) return <div className="p-12">找不到该出版物。</div>;
 
-    const displayTitle = getPublicationSlug(pub) || slug;
-
     return (
       <div className="animate-in fade-in slide-in-from-bottom-8 duration-500 max-w-5xl mx-auto pt-12 pb-24 px-6">
         <div className="mb-16 pb-8 border-b-8 border-black">
@@ -716,7 +713,7 @@ export default function App() {
             <span className="inline-block bg-red-600 text-white px-4 py-2 text-sm font-bold uppercase">{pub.abbr}</span>
             <span className="font-mono font-bold text-neutral-400">{pub.year}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-8 text-black">{displayTitle}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-8 text-black">{pub.title}</h1>
           <p className="text-xl text-neutral-600 font-medium mb-6">{pub.authors}</p>
           {paper && (
             <a href={paper} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-bold uppercase text-sm border-2 border-black hover:bg-white hover:text-black transition-colors">Paper</a>
@@ -735,9 +732,9 @@ export default function App() {
     const [content, setContent] = useState('');
 
     useEffect(() => {
-      // set document title to slug (e.g., gliese-726-part-1)
-      if (slug) document.title = slug;
-    }, [slug]);
+      // set document title to blog title
+      if (blog) document.title = blog.title;
+    }, [blog]);
 
     useEffect(() => {
       let cancelled = false;
@@ -757,20 +754,22 @@ export default function App() {
 
     if (!blog) return <div className="p-12">找不到文章。</div>;
 
-    // parse title & metadata but display slug as requested
+    // parse and skip the first line if it's a heading (# title), and skip metadata line
     const lines = content.split('\n');
     let metadata = '';
     let start = 0;
+    // Skip the first line if it's a markdown heading
+    if (lines[start]?.trim().startsWith('# ')) { start++; }
+    // Check for metadata line (wrapped in underscores)
     if (lines[start]?.trim().startsWith('_') && lines[start]?.trim().endsWith('_')) { metadata = lines[start].trim().slice(1,-1); start++; }
+    // Skip empty lines
     while (start < lines.length && lines[start].trim() === '') start++;
     const actual = lines.slice(start).join('\n');
-
-    const displayTitle = slug;
 
     return (
       <div className="animate-in fade-in slide-in-from-bottom-8 duration-500 max-w-4xl mx-auto pt-12 pb-24 px-6">
         <div className="mb-10 pb-6 border-b-4 border-black">
-          <h1 className="text-5xl md:text-6xl font-black leading-tight text-black mb-4">{displayTitle}</h1>
+          <h1 className="text-5xl md:text-6xl font-black leading-tight text-black mb-4">{blog.title}</h1>
           {metadata && <span className="text-sm italic text-neutral-500">{metadata}</span>}
         </div>
         <div className="prose prose-lg max-w-none prose-headings:font-bold prose-p:text-neutral-800">
